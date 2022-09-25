@@ -37,8 +37,8 @@ namespace PracticeMVC.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        [HttpPost]
-        [Route("OnPost_SendingContentIntNotInUrl")]
+        [HttpGet]
+        [Route("OnPost_SendingContentIntNotInUrl/{input}")]
         public async Task OnPost_SendingContentIntNotInUrl(string input)
         {
             HttpClient client = new HttpClient();
@@ -56,8 +56,8 @@ namespace PracticeMVC.Controllers
             Console.WriteLine(result.Content.ReadAsStringAsync().Result);
         }
 
-        [HttpPost]
-        [Route("OnPost_SendingContentIntInUrl")]
+        [HttpGet]
+        [Route("OnPost_SendingContentIntInUrl/{input}")]
         public async Task OnPost_SendingContentIntInUrl(string input)
         {
             HttpClient client = new HttpClient();
@@ -76,7 +76,7 @@ namespace PracticeMVC.Controllers
         }
 
         [HttpPost]
-        [Route("OnPost_SendingContentStringNotInUrl")]
+        [Route("OnPost_SendingContentStringNotInUrl/{input?}")]
         public async Task OnPost_SendingContentStringNotInUrl(string input)
         {
             HttpClient client = new HttpClient();
@@ -95,7 +95,7 @@ namespace PracticeMVC.Controllers
         }
 
         [HttpPost]
-        [Route("OnPost_SendingContentStringInUrl")]
+        [Route("OnPost_SendingContentStringInUrl/{input}")]
         public async Task OnPost_SendingContentStringInUrl(string input)
         {
             HttpClient client = new HttpClient();
