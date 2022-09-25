@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Net.Http.Headers;
 using System.Text;
 using Newtonsoft.Json;
+using System.Reflection.Metadata;
 
 namespace PracticeMVC.Controllers
 {
@@ -38,8 +39,8 @@ namespace PracticeMVC.Controllers
         }
 
         [HttpGet]
-        [Route("OnPost_SendingContentIntNotInUrl/{input}")]
-        public async Task OnPost_SendingContentIntNotInUrl(string input)
+        [Route("OnGet_SendingContentIntNotInUrl/{input}")]
+        public async Task<IActionResult> OnGet_SendingContentIntNotInUrl(string input)
         {
             HttpClient client = new HttpClient();
 
@@ -54,11 +55,15 @@ namespace PracticeMVC.Controllers
             var result = await client.SendAsync(httpRequestMessage);
 
             Console.WriteLine(result.Content.ReadAsStringAsync().Result);
+
+            ViewBag.Message = result.Content.ReadAsStringAsync().Result;
+
+            return View();
         }
 
         [HttpGet]
-        [Route("OnPost_SendingContentIntInUrl/{input}")]
-        public async Task OnPost_SendingContentIntInUrl(string input)
+        [Route("OnGet_SendingContentIntInUrl/{input}")]
+        public async Task<IActionResult> OnGet_SendingContentIntInUrl(string input)
         {
             HttpClient client = new HttpClient();
 
@@ -73,11 +78,15 @@ namespace PracticeMVC.Controllers
             var result = await client.SendAsync(httpRequestMessage);
 
             Console.WriteLine(result.Content.ReadAsStringAsync().Result);
+
+            ViewBag.Message = result.Content.ReadAsStringAsync().Result;
+
+            return View();
         }
 
         [HttpPost]
         [Route("OnPost_SendingContentStringNotInUrl/{input?}")]
-        public async Task OnPost_SendingContentStringNotInUrl(string input)
+        public async Task<IActionResult> OnPost_SendingContentStringNotInUrl(string input)
         {
             HttpClient client = new HttpClient();
 
@@ -92,11 +101,15 @@ namespace PracticeMVC.Controllers
             var result = await client.SendAsync(httpRequestMessage);
 
             Console.WriteLine(result.Content.ReadAsStringAsync().Result);
+
+            ViewBag.Message = result.Content.ReadAsStringAsync().Result;
+
+            return View();
         }
 
         [HttpPost]
         [Route("OnPost_SendingContentStringInUrl/{input}")]
-        public async Task OnPost_SendingContentStringInUrl(string input)
+        public async Task<IActionResult> OnPost_SendingContentStringInUrl(string input)
         {
             HttpClient client = new HttpClient();
 
@@ -111,6 +124,10 @@ namespace PracticeMVC.Controllers
             var result = await client.SendAsync(httpRequestMessage);
 
             Console.WriteLine(result.Content.ReadAsStringAsync().Result);
+
+            ViewBag.Message = result.Content.ReadAsStringAsync().Result;
+
+            return View();
         }
     }
 }
